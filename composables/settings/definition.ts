@@ -10,6 +10,7 @@ export type ColorMode = 'light' | 'dark' | 'system'
 export type NavButtonName = 'home' | 'search' | 'notification' | 'mention' | 'explore' | 'local' | 'federated' | 'moreMenu'
 
 export interface PreferencesSettings {
+  autoExpandSpoilers: boolean
   hideAltIndicatorOnPosts: boolean
   hideGifIndicatorOnPosts: boolean
   hideBoostCount: boolean
@@ -26,6 +27,7 @@ export interface PreferencesSettings {
   optimizeForLowPerformanceDevice: boolean
   enableDataSaving: boolean
   enablePinchToZoom: boolean
+  useRemoteSettings: boolean
   useStarFavoriteIcon: boolean
   zenMode: boolean
   experimentalVirtualScroller: boolean
@@ -66,6 +68,7 @@ export function getDefaultLanguage(languages: string[]) {
 }
 
 export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
+  autoExpandSpoilers: false,
   hideAltIndicatorOnPosts: false,
   hideGifIndicatorOnPosts: false,
   hideBoostCount: false,
@@ -82,6 +85,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   optimizeForLowPerformanceDevice: false,
   enableDataSaving: false,
   enablePinchToZoom: false,
+  useRemoteSettings: true,
   useStarFavoriteIcon: false,
   zenMode: false,
   experimentalVirtualScroller: true,

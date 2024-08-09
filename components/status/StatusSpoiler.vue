@@ -7,7 +7,7 @@ const props = defineProps<{
 }>()
 
 const expandSpoilers = computed(() => {
-  const expandCW = currentUser.value ? getExpandSpoilersByDefault(currentUser.value.account) : false
+  const expandCW = usePreferences('useRemoteSettings').value ? (currentUser.value ? getExpandSpoilersByDefault(currentUser.value.account) : false) : usePreferences('autoExpandSpoilers').value
   const expandMedia = currentUser.value ? getExpandMediaByDefault(currentUser.value.account) : false
 
   return !props.filter // always prevent expansion if filtered

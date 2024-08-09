@@ -52,6 +52,19 @@ const userSettings = useUserSettings()
         {{ $t('settings.preferences.enable_autoplay') }}
       </SettingsToggleItem>
       <SettingsToggleItem
+        :checked="getPreferences(userSettings, 'useRemoteSettings')"
+        @click="togglePreferences('useRemoteSettings')"
+      >
+        {{ $t('settings.preferences.use_remote_settings') }}
+      </SettingsToggleItem>
+      <SettingsToggleItem
+        :checked="getPreferences(userSettings, 'autoExpandSpoilers')"
+        :disabled="getPreferences(userSettings, 'useRemoteSettings')"
+        @click="togglePreferences('autoExpandSpoilers')"
+      >
+        {{ $t('settings.preferences.auto_expand_spoilers') }}
+      </SettingsToggleItem>
+      <SettingsToggleItem
         :checked="getPreferences(userSettings, 'optimizeForLowPerformanceDevice')"
         @click="togglePreferences('optimizeForLowPerformanceDevice')"
       >
