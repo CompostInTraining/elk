@@ -1,18 +1,19 @@
+import type { BuildInfo } from './types'
 import { createResolver, useNuxt } from '@nuxt/kit'
 import { isCI, isDevelopment, isWindows } from 'std-env'
 import { isPreview } from './config/env'
-import { pwa } from './config/pwa'
-import type { BuildInfo } from './types'
 import { currentLocales } from './config/i18n'
+import { pwa } from './config/pwa'
 
 const { resolve } = createResolver(import.meta.url)
 
 export default defineNuxtConfig({
+  compatibilityDate: '2024-09-11',
   typescript: {
     tsConfig: {
       exclude: ['../service-worker'],
       vueCompilerOptions: {
-        target: 3.4,
+        target: 3.5,
       },
     },
   },
@@ -276,7 +277,7 @@ export default defineNuxtConfig({
     },
   },
 
-  // eslint-disable-next-line ts/prefer-ts-expect-error
+  // eslint-disable-next-line ts/ban-ts-comment
   // @ts-ignore nuxt-security is conditional
   security: {
     headers: {
@@ -299,7 +300,7 @@ export default defineNuxtConfig({
         'upgrade-insecure-requests': true,
       },
       permissionsPolicy: {
-        fullscreen: ['\'self\'', 'https:', 'http:'],
+        fullscreen: '*',
       },
     },
     rateLimiter: false,
@@ -333,6 +334,10 @@ declare global {
 }
 
 declare module '#app' {
+  interface PageMeta {
+    wideLayout?: boolean
+  }
+
   interface RuntimeNuxtHooks {
     'elk-logo:click': () => void
   }
